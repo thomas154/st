@@ -51,7 +51,7 @@ To use url grabbing feature download the urlopener file
  
 replace
 ```
-~/scripts/./urlopener
+~/scripts/st-urlopener/./urlopener
 ``` 
 at line 203 of config.h
 

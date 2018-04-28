@@ -200,7 +200,7 @@ static MouseKey mkeys[] = {
 	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
 };
 
-static char *openurl[] = { "/bin/sh", "-c", "sed 's/ssh:\\/\\///g' | ~/scripts/./urlopener", "externalpipe",NULL, NULL };
+static char *openurl[] = { "/bin/sh", "-c", "sed 's/ssh:\\/\\///g' | ~/scripts/st-urlopener/./urlopener", "externalpipe",NULL, NULL };
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
 
