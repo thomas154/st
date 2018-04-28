@@ -47,7 +47,7 @@ make
 sudo make install
 ```
 # Note:
-To use url grabbing feature download the urlopener file 
+To use url grabbing feature download the st-urlopener files [link](https://github.com/thomas154/st-urlopener) 
  
 replace
 ```
