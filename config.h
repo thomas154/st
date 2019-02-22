@@ -5,8 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "roboto mono nerd font:pixelsize=14:antialias=true:autohint=true";
-static int borderpx = 10;
+static char font[] = "d2coding for powerline:size=11:antialias=true:autohint=true";
+/* static char font[] = "hack:pixelsize=14:antialias=true:autohint=true"; */
+static int borderpx = 30;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -48,8 +49,9 @@ static unsigned int actionfps = 30;
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
+ * 800
  */
-static unsigned int blinktimeout = 800;
+static unsigned int blinktimeout = 400;
 
 /*
  * thickness of underline and bar cursors
@@ -85,27 +87,76 @@ static unsigned int tabspaces = 8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* solarized dark */
-	"#000000",
-	"#f22c40",
-	"#5ab738",
-	"#6c71c4",
-	"#407ee7",
-	"#6666ea",
-	"#00ad9c",
-	"#a8a19f",
-	"#1b1918",
-	"#f22c40",
-	"#5ab738",
-	"#6c71c4",
-	"#407ee7",
-	"#6666ea",
-	"#00ad9c",
-	"#f1efee",
+//	"#000000",
+//	"#f22c40",
+//	"#5ab738",
+//	"#6c71c4",
+//	"#407ee7",
+//	"#6666ea",
+//	"#00ad9c",
+//	"#a8a19f",
+//	"#1b1918",
+//	"#f22c40",  //"#5ab738
+//  "#dc2840",
+//	"#6c71c4",
+//	"#407ee7",
+//	"#6666ea",
+//	"#00ad9c",
+//	"#f1efee",
+
+//"#070101",
+//"#862c34",
+//"#13b179",
+//"#f7aef8",
+//"#296bc4",
+//"#9257e0",
+//"#86a595",
+//"#d7b9d5",
+//"#777777",
+//"#120D31",
+//"#302F4D",
+//"#302F4D",
+//"#A57982",
+//"#A57982",
+//"#B98EA7",
+//"#F0D3F7",
+
+/* "#5ab738", */
 
 
+/* "#000000", */
+/* "#F37F97", */
+/* "#5ADECD", */
+/* "#F2A272", */
+/* "#8897F4", */
+/* "#C574DD", */
+/* "#79E6F3", */
+/* "#FDFDFD", */
+/* "#414458", */
+/* "#FF4971", */
+/* "#18E3C8", */
+/* "#FF8037", */
+/* "#556FFF", */
+/* "#B043D1", */
+/* "#3FDCEE", */
+/* "#BEBEC1", */
 
-
-
+"#111111",
+"#DD0D26",
+"#8B745C",
+"#555966",
+"#296bc4",
+"#9257e0",
+"#656A78",
+"#bdb2a9",
+"#7a7c81",
+"#1E6B5F",
+"#474B56",
+"#555966",
+"#605F6A",
+"#5D626F",
+"#656A78",
+"#afb2b9",
 
 //	"#073642",  /*  0: black    */
 //	"#dc322f",  /*  1: red      */
@@ -127,23 +178,62 @@ static const char *colorname[] = {
 
 /* Terminal colors for alternate (light) palette */
 static const char *altcolorname[] = {
+	/* "#ffffff", */
+	/* "#D34141", */
+	/* "#41D346", */
+	/* "#F39C5E", */
+	/* "#503ACE", */
+	/* "#F39C5E", */
+	/* "#5EF39E", */
+	/* "#000000", */
+	/* "#ffffff", */
+	/* "#d34141",  //"#5ab738 */
+    /* "#41d346", */
+	/* "#f39c5e", */
+	/* "#503ace", */
+	/* "#f39c5e", */
+	/* "#5ef39e", */
+	/* "#000000", */
+
+/* "#000000", */
+/* "#151515", */
+/* "#862c34", */
+/* "#13b179", */
+"#0b0a0f",
+"#DD0D26",
+"#8B745C",
+"#555966",
+"#296bc4",
+"#9257e0",
+"#656A78",
+"#afb2b9",
+"#7a7c81",
+"#1E6B5F",
+"#474B56",
+"#555966",
+"#605F6A",
+"#5D626F",
+"#656A78",
+"#afb2b9",
+
 	/* solarized light */
-	"#eee8d5",  /*  0: black    */
-	"#dc322f",  /*  1: red      */
-	"#859900",  /*  2: green    */
-	"#b58900",  /*  3: yellow   */
-	"#268bd2",  /*  4: blue     */
-	"#d33682",  /*  5: magenta  */
-	"#2aa198",  /*  6: cyan     */
-	"#073642",  /*  7: white    */
-	"#fdf6e3",  /*  8: brblack  */
-	"#cb4b16",  /*  9: brred    */
-	"#93a1a1",  /* 10: brgreen  */
-	"#839496",  /* 11: bryellow */
-	"#657b83",  /* 12: brblue   */
-	"#6c71c4",  /* 13: brmagenta*/
-	"#586e75",  /* 14: brcyan   */
-	"#002b36",  /* 15: brwhite  */
+//	"#eee8d5",  /*  0: black    */
+//	"#dc322f",  /*  1: red      */
+//	"#859900",  /*  2: green    */
+//	"#b58900",  /*  3: yellow   */
+//	"#268bd2",  /*  4: blue     */
+//	"#d33682",  /*  5: magenta  */
+//	"#2aa198",  /*  6: cyan     */
+//	"#073642",  /*  7: white    */
+//	"#fdf6e3",  /*  8: brblack  */
+//	"#cb4b16",  /*  9: brred    */
+//	"#93a1a1",  /* 10: brgreen  */
+//	"#839496",  /* 11: bryellow */
+//	"#657b83",  /* 12: brblue   */
+//	"#6c71c4",  /* 13: brmagenta*/
+//	"#586e75",  /* 14: brcyan   */
+//	"#002b36",  /* 15: brwhite  */
+
 };
 
 /*
@@ -152,7 +242,7 @@ static const char *altcolorname[] = {
  */
 static unsigned int defaultfg = 15;
 static unsigned int defaultbg = 0;
-static unsigned int defaultcs = 10;
+static unsigned int defaultcs = 4;
 static unsigned int defaultrcs = 8;
 
 /*
@@ -162,7 +252,7 @@ static unsigned int defaultrcs = 8;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 6;
+static unsigned int cursorshape = 3;
 
 /*
  * Default columns and rows numbers

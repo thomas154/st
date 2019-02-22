@@ -4162,34 +4162,42 @@ xdrawcursor(void)
 
 	if (IS_SET(MODE_HIDE))
 		return;
-
-	/* draw the new one */
-	if (xw.state & WIN_FOCUSED) {
-		switch (xw.cursor) {
-		case 7: /* st extension: snowman */
-			utf8decode("☃", &g.u, UTF_SIZ);
-		case 0: /* Blinking Block */
-		case 1: /* Blinking Block (Default) */
-		case 2: /* Steady Block */
-			g.mode |= term.line[term.c.y][curx].mode & ATTR_WIDE;
-			xdrawglyph(g, term.c.x, term.c.y);
-			break;
-		case 3: /* Blinking Underline */
-		case 4: /* Steady Underline */
-			XftDrawRect(xw.draw, &drawcol,
-					borderpx + curx * xw.cw,
-					borderpx + (term.c.y + 1) * xw.ch - \
-						cursorthickness,
-					xw.cw, cursorthickness);
-			break;
-		case 5: /* Blinking bar */
-		case 6: /* Steady bar */
-			XftDrawRect(xw.draw, &drawcol,
-					borderpx + curx * xw.cw,
-					borderpx + term.c.y * xw.ch,
-					cursorthickness, xw.ch);
-			break;
-		}
+	
+    /* draw the new one */
+    if (xw.state & WIN_FOCUSED) {
+        switch (xw.cursor) {
+        case 7: /* st extension: snowman */
+            utf8decode("☃", &g.u, UTF_SIZ);
+        case 0: /* Blinking Block */
+        case 1: /* Blinking Block (Default) */
+            if (IS_SET(MODE_BLINK)) {
+                xdrawglyph(term.line[term.c.y][term.c.x], term.c.x, term.c.y);
+                break;
+            }
+        case 2: /* Steady Block */
+            g.mode |= term.line[term.c.y][curx].mode & ATTR_WIDE;
+            xdrawglyph(g, term.c.x, term.c.y);
+            break;
+        case 3: /* Blinking Underline */
+            if (IS_SET(MODE_BLINK))
+                break;
+        case 4: /* Steady Underline */
+            XftDrawRect(xw.draw, &drawcol,
+                    borderpx + curx * xw.cw,
+                    borderpx + (term.c.y + 1) * xw.ch - \
+                        cursorthickness,
+                    xw.cw, cursorthickness);
+            break;
+        case 5: /* Blinking bar */
+            if (IS_SET(MODE_BLINK))
+                break;
+        case 6: /* Steady bar */
+            XftDrawRect(xw.draw, &drawcol,
+                    borderpx + curx * xw.cw,
+                    borderpx + term.c.y * xw.ch,
+                    cursorthickness, xw.ch);
+            break;
+        }
 	} else {
 		XftDrawRect(xw.draw, &drawcol,
 				borderpx + curx * xw.cw,
@@ -4557,6 +4565,8 @@ run(void)
 			ttyread();
 			if (blinktimeout) {
 				blinkset = tattrset(ATTR_BLINK);
+				blinkset = blinkset || xw.cursor == 0 || xw.cursor == 1;
+                blinkset = blinkset || xw.cursor == 3 || xw.cursor == 5;
 				if (!blinkset)
 					MODBIT(term.mode, 0, MODE_BLINK);
 			}
